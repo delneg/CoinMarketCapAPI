@@ -3,13 +3,14 @@
 JSON API for coinmarketcap.com . The documentation for this service is available in [index.html](http://htmlpreview.github.io/?https://github.com/delneg/CoinMarketCapAPI/blob/master/index.html).
 
 To run, `npm install && npm start`.
+The service itself is hosted by me at http://45.63.117.206:8081. You can use that site or, if you want, host it yourself.
 
 ### License
 
 ```
 MIT License
 
-Copyright (c) 2016 Andi Andreas
+Copyright (c) 2017 Denis Bobrov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
