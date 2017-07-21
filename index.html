@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CoinMarketCap All coin JSON API</title>
+    <link href="//fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900"
+          rel="stylesheet" type="text/css">
+    <style>
+        aside,
+        footer,
+        header,
+        hgroup,
+        section {
+            display: block;
+        }
+
+        body {
+            color: #404040;
+            font-family: "Roboto", "Helvetica Neue";
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        html {
+            font-family: "Roboto";
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        ul {
+            margin-top: 0;
+        }
+
+        .container {
+            margin-right: auto;
+            margin-left: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .container:before,
+        .container:after {
+            content: " ";
+            /* 1 */
+            display: table;
+            /* 2 */
+        }
+
+        .container:after {
+            clear: both;
+        }
+
+        .row {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        .row:before,
+        .row:after {
+            content: " ";
+            /* 1 */
+            display: table;
+            /* 2 */
+        }
+
+        .row:after {
+            clear: both;
+        }
+
+        .col-sm-6,
+        .col-md-6,
+        .col-xs-12 {
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .col-xs-12 {
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                width: 750px;
+            }
+
+            .col-sm-6 {
+                float: left;
+            }
+
+            .col-sm-6 {
+                width: 50%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                width: 970px;
+            }
+
+            .col-md-6 {
+                float: left;
+            }
+
+            .col-md-6 {
+                width: 50%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                width: 1170px;
+            }
+        }
+
+        a {
+            color: #069;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #EA0011;
+            text-decoration: underline;
+        }
+
+        hgroup {
+            margin-top: 50px;
+        }
+
+        footer {
+            margin: 50px 0 25px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #000;
+            line-height: 1.38em;
+            margin: 1.5em 0 .3em;
+        }
+
+        h1 {
+            font-size: 25px;
+            font-weight: 300;
+            border-bottom: 1px solid #fff;
+            margin-bottom: .5em;
+        }
+
+        h1:after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        h2 {
+            font-size: 19px;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 400;
+            margin: 0 0 .3em;
+        }
+
+        p {
+            margin: 0 0 2em;
+            font-size: 14px;
+        }
+
+        p + h2 {
+            margin-top: 2em;
+        }
+
+        html {
+            background: #f5f5f5;
+            height: 100%;
+        }
+
+        code {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 1px 5px;
+            color: #888;
+        }
+
+        pre {
+            display: block;
+            padding: 13.333px 20px;
+            margin: 0 0 20px;
+            font-size: 13px;
+            line-height: 1.4;
+            background-color: #fff;
+            border-left: 2px solid rgba(120, 120, 120, 0.35);
+            white-space: pre;
+            white-space: pre-wrap;
+            word-break: normal;
+            word-wrap: break-word;
+            overflow: auto;
+            font-family: Menlo, Monaco, "Liberation Mono", Consolas, monospace !important;
+        }
+    </style>
+
+</head>
+
+<body>
+<section class='container'>
+    <a href="https://github.com/delneg">
+        <img style="position: absolute; top: 0; right: 0; border: 0;"
+             src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67"
+             alt="Fork me on GitHub"
+             data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
+    </a>
+    <h1>
+        <b>CoinMarketCap JSON API</b>
+    </h1>
+    <div class="row">
+        <section class='col-xs-12'>
+            <p>A straightforward API to access market information for the top 100 cryptocurrencies gathered from
+                <a href="http://coinmarketcap.com">coinmarketcap.com</a>. Updated every 5 minutes.</p>
+            <a href="https://github.com/delneg/CoinMarketCapAPI" target="_blank">Open source, too!</a>
+            <h2>Usage</h2>
+            <p>Simply send a GET request to
+                <code>/api/symbol</code>, where
+                <code>symbol</code> is a currency code (e.g. BTC, LTC, DOGE, etc.)
+                <br>You can also GET
+                <code>/api/all</code> to receive information on all currencies at once.
+            <p>
+            <h2>Demos</h2>
+            <ul>
+                <li>
+                    <a href="/api/btc">/api/btc</a> (Bitcoin)
+                </li>
+                <li>
+                    <a href="/api/ltc">/api/ltc</a> (Litecoin)
+                </li>
+                <li>
+                    <a href="/api/doge">/api/doge</a> (Dogecoin)
+                </li>
+                <li>
+                    <a href="/api/all">/api/all</a> (All supported currencies)
+                </li>
+            </ul>
+            <h2>Property Isolation</h2>
+            <p>If you want to only get a single property of a currency, you can add it to the URL after the currency
+                code:</p>
+            <ul>
+                <li>
+                    <a href="/api/btc/price">/api/btc/price</a> (Bitcoin prices)
+                </li>
+                <li>
+                    <a href="/api/ltc/market_cap">/api/ltc/market_cap</a> (Litecoin market cap)
+                </li>
+                <li>
+                    <a href="/api/doge/volume">/api/doge/volume</a> (Dogecoin volume over the last 24 hours)
+                </li>
+                <li>
+                    <a href="/api/ppc/change">/api/ppc/change</a> (Peercoin price change over the last 24 hours)
+                </li>
+            </ul>
+            <h2>Metrics</h2>
+            <p>Metrics about this service are viewable at
+                <a href="/metrics">/metrics</a>.</p>
+            <h2>Donations</h2>
+            <ul style="list-style-type:none">
+                <li>
+                    <a href="bitcoin:14HNUa76dDcVsHgDyXhcRBx41vkiP8EZ3b">Bitcoin</a>: 14HNUa76dDcVsHgDyXhcRBx41vkiP8EZ3b
+                </li>
+                <li>
+                    <a href="ethereum:0x0E0F53a08d17767e6C07E2e7438F99D6aB331fA1">Ethereum</a>:
+                    0x0E0F53a08d17767e6C07E2e7438F99D6aB331fA1
+                </li>
+            </ul>
+            <p>Any and all donations are appreciated. :)</p>
+    </div>
+
+</section>
+</body>
+
+</html>
